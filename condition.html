@@ -17,27 +17,32 @@
 
     <script type="text/babel">
       // Your scripts goes here
-      const Win = (props) =>{
-        return <h1>You win big!</h1>
+
+      const ShowText = (props) =>{
+          const text = props.text
+          return <h1>{text}</h1>
       }
 
-      const Lost = (props) =>{
-          return <h1>You lost every penny!</h1>
+      const TooLong = (props) =>{
+          return <h1>Too long</h1>
       }
 
-      const Con = (props) =>{
-        
-        let number = props.number
-            number = Number(number)
-        if(number < 3){
-            return <Win />
-        }
-        else{
-            return <Lost />
-        }
-
+      const CheckText = (props) =>{
+          let string = props.string
+          let strlen = string.length
+          if(strlen <= 5){
+              return <ShowText text = {string} />
+          }
+          else{
+              return <TooLong />
+          }
       }
-      ReactDOM.render(<Con number = "5" /> , document.getElementById('condition'))
+
+      ReactDOM.render(<CheckText string = "HelloWOORD" />, document.getElementById('root'))
+
+
+
+
     </script>
 </body>
 
