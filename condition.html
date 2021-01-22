@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>React getting started</title>
+</head>
+
+<body>
+    <!-- Root container for react components -->
+    <div id='root'></div>
+    <div id="app"></div>
+    <div id="condition"></div>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+      // Your scripts goes here
+      const Win = (props) =>{
+        return <h1>You win big!</h1>
+      }
+
+      const Lost = (props) =>{
+          return <h1>You lost every penny!</h1>
+      }
+
+      const Con = (props) =>{
+        
+        let number = props.number
+            number = Number(number)
+        if(number < 3){
+            return <Win />
+        }
+        else{
+            return <Lost />
+        }
+
+      }
+      ReactDOM.render(<Con number = "5" /> , document.getElementById('condition'))
+    </script>
+</body>
+
+</html>
