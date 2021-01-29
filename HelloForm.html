@@ -19,29 +19,26 @@
 
 
         const CallUFO = () => {
-            const [UFO, setUFO] = React.useState({ name: '', color: '' });
-
+            const [user, setUser] = React.useState({ firstname: '', lastname: '' });
             const inputChanged = (event) => {
-                setUFO({ ...name, [event.target.name]: event.target.value });
+                setUser({ ...user, [event.target.name]: event.target.value });
             };
-
-            const addTodo = (event) =>{
-                
-                alert("You are submitting " +  UFO.name, UFO.color)
-                event.preventDefault();
+            const addUser = (e) =>{
+                e.preventDefault();
+                alert('Hello ' + user.firstName + ' ' + user.lastName)
             }
-
             return (
-                <form onSubmit={addTodo}>
-                    <input type="text" name="name" value={UFO.name} onChange={inputChanged} />
-                    <input type="text" name="color" value={UFO.color} onChange={inputChanged} />
-                    <input type="submit" value="Add" />
+                <form onSubmit={addUser}>
+                    <input type="text" name="firstName" value={user.firstName} onChange={inputChanged}></input>
+                    <input type="text" name="lastName" value={user.lastName} onChange={inputChanged}></input>
+                    <input type="submit" value="Send" />
                 </form>
-            )
-        }
+
+            );
+        };
+
 
         ReactDOM.render(<CallUFO />, document.getElementById('root'));
-
 
     </script>
 </body>

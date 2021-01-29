@@ -36,16 +36,18 @@
         ReactDOM.render(<HelloName />, document.getElementById('root'))
 
         const HelloUFO = () => {
-            const [name, setName] = React.useState('');
+            const [UFO, setUFO] = React.useState({ name: '', color: '' });
 
             const inputChanged = (event) => {
-                setName(event.target.value);
+                setUFO({ ...name, [event.target.name]: event.target.value });
             };
 
             return (
                 <div>
-                    <div>Hello {name}</div>
-                    <input type="text" value={name} onChange={inputChanged} />
+                    <div>Hello {UFO.name}, {UFO.color}</div>
+                    <input type="text" name="name" value={UFO.name} onChange={inputChanged} />
+                    <input type="text" name="color" value={UFO.color} onChange={inputChanged} />
+                    
                 </div>
             )
         }
