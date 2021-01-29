@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>React NASA APOD</title>
+    <title>React Trivia</title>
 </head>
 
 <body>
@@ -17,14 +17,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 
     <script type="text/babel">
-       
+
 
         const Trivia = () => {
             const [ques, setQues] = React.useState('');
             const [count, setCount] = React.useState(0);
-            const getNewQ = () =>{
-               setCount(count + 1);
-            } 
+            const getNewQ = () => {
+                setCount(count + 1);
+            }
 
             React.useEffect(
                 () => {
@@ -40,9 +40,9 @@
             return (
                 <div>
                     <p>{ques}</p>
-                    <br/>
+                    <br />
                     <button onClick={getNewQ}>New Q</button>
-                    </div>
+                </div>
             )
 
         }
