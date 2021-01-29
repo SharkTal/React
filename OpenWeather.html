@@ -1,0 +1,54 @@
+<!-- Fetch astronomy picture of the day from NASA API -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>React Trivia</title>
+</head>
+
+<body>
+    <!-- Root container for react components -->
+    <div id="root"></div>
+    <div id="London"></div>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+
+
+
+        const WeatherAPI = () => {
+            const [temp, setTemp] = React.useState();
+            const [weather, setWeather] = React.useState();
+            const [icon, setIcon] = React.useState();
+
+            React.useEffect(
+                () => {
+                    fetch('http://api.openweathermap.org/data/2.5/weather?q=London%20&units=metric&APPID=YourID') //units=metric switch F to Celsius
+                        .then(res => res.json())
+                        .then(resData => {
+                            console.log(resData);
+                            setTemp(resData.main.temp)
+                            setWeather(resData.weather[0].main)
+                            setIcon("http://openweathermap.org/img/wn/" + resData.weather[0].icon + '.png') //google it
+                        })
+                }, []
+            )
+
+            return (
+                <div>
+                    <p>Temperature: {temp}  Celsius</p><br />
+                    <p>Weather: {weather} </p><br />
+                    <img src={icon} alt="Fucking weather icon" />
+                </div>
+            );
+        }
+
+        ReactDOM.render(<WeatherAPI />, document.getElementById("London"));
+    </script>
+</body>
+
+</html>
