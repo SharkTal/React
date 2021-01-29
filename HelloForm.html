@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Hello Form</title>
+</head>
+
+<body>
+    <!-- Root container for react components -->
+    <div id='root'></div>
+    <div id="app"></div>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+        // Your scripts goes here
+
+
+        const CallUFO = () => {
+            const [UFO, setUFO] = React.useState({ name: '', color: '' });
+
+            const inputChanged = (event) => {
+                setUFO({ ...name, [event.target.name]: event.target.value });
+            };
+
+            const addTodo = (event) =>{
+                
+                alert("You are submitting " +  UFO.name, UFO.color)
+                event.preventDefault();
+            }
+
+            return (
+                <form onSubmit={addTodo}>
+                    <input type="text" name="name" value={UFO.name} onChange={inputChanged} />
+                    <input type="text" name="color" value={UFO.color} onChange={inputChanged} />
+                    <input type="submit" value="Add" />
+                </form>
+            )
+        }
+
+        ReactDOM.render(<CallUFO />, document.getElementById('root'));
+
+
+    </script>
+</body>
+
+</html>

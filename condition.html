@@ -17,6 +17,13 @@
 
     <script type="text/babel">
       // Your scripts goes here
+       const HelloText = (props) =>{
+           const [text, setText] = React.useState('');
+
+           const inputChanged = (event) => {
+               setText(event.tartget.value);
+           };
+       }
 
       const ShowText = (props) =>{
           const text = props.text
