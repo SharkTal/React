@@ -1,0 +1,83 @@
+<!-- Fetch astronomy picture of the day from NASA API -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>NASA API</title>
+</head>
+
+<body>
+    <!-- Root container for react components -->
+    <div id="root"></div>
+    <div id="nasa"></div>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+
+
+        const Nasa = () => {
+            const [explanation, setExplanation] = React.useState('')
+            const [url, setUrl] = React.useState('')
+            const [isReady, setIsReady] = React.useState(false)
+            const [mediaType, setMediaType] = React.useState('')
+            const [item, setItem] = React.useState('')
+            const [jn, setJn] = React.useState([])
+
+            React.useEffect(() => {
+                fetch('https://images-api.nasa.gov/search?q=apollo%2011')
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        setExplanation(data.collection.items[0].data[0].description)
+                        fetch(data.collection.items[0].href)
+                            .then(response => response.json())
+                            .then(
+                                data => {
+                                    console.log(data)
+                                    setUrl(data[1])
+                                }
+                            )
+                        setIsReady(true)
+                        //setMediaType(data.media_type)
+
+
+
+                    })
+                    .catch(
+                        err => console.error(err)
+                    )
+            }, []);
+
+            if (!isReady) {
+                return (
+                    <div>
+                        <p>Loading ...Please wait</p>
+                    </div>
+                )
+
+            }
+            else {
+                return (
+                    //{mediaType === "image" ? image : video }
+                    <div>
+                        Eexplanation: {explanation}
+                        <br />
+                        <p>URL:{url}</p>
+                        <iframe src={url} frameborder="0" width="520"height="415"></iframe>
+                    </div>
+                );
+            }
+
+
+
+
+        }
+        ReactDOM.render(<Nasa />, document.getElementById("nasa"));
+    </script>
+</body>
+
+</html>
